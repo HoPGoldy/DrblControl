@@ -27,7 +27,7 @@ cd至根文件夹下 在命令行中键入
 接下来，你应该可以正常的通过DrblControl.py中提供的例子
 
 ## 功能说明
-以下将说明定义在**ActionObject.py**中**NewItem**类的注意功能
+以下将说明定义在**ActionObject.py**中**NewItem**类的所有功能
 
 ### login(userName, password)
 接受用户名和密码，登陆网站，暂未实现登陆失败的提示功能
@@ -47,17 +47,39 @@ cd至根文件夹下 在命令行中键入
 1. **goToList**：返回列表（默认）
 2. **addNewItem**: 新建下一条
 
+## 传入的data字典结构
+你也可以在DrblControl.py中找到下列说明
+```
+    {
+    'category': 9, #自定义分类的索引值
+    'targetPeople': (10, 1),#目标人群的索引值
+    'url': 'https://detail.tmall.com/item.htm?id=574974684040',#商品链接
+    'title': '品牌 商品名',#商品名
+    'longHighLight': ('长亮点', '长亮点2', '长亮点3'),#长亮点，不规定数量，但八斗会最多支持三个，传入过数量过多的长亮点将导致异常
+    'shortHighLight': ('短亮点1', '短亮点2', '短亮点3'),#短亮点，要求同长亮点
+    'addition': ({#补充内容，为元组类型，支持传入多个补充
+        'title': '设计亮点',#补充标题
+        'content': '设计亮点的内容。'},#补充内容
+                {
+        'title': '品牌介绍',#补充2标题
+        'content': '品牌介绍的内容。',#补充2内容
+        'brand': 'brand'#该属性将将被添加至补充的品牌名输入框中，需先确保title值为'品牌介绍'，不然将导致异常
+            },
+        ...)
+    }
+```
+
 ## 项目结构
-### PageObject/BaseObject.py
-该文件二次封装了selenium提供的接口以便于项目使用
+  ### PageObject/BaseObject.py
+  该文件二次封装了selenium提供的接口以便于项目使用
 
-### PageObject/其余python文件
-包括 **LoginPage.py**，**AddNewItemPage.py**，**MainPage.py**
+  ### PageObject/其余python文件
+  包括 **LoginPage.py**，**AddNewItemPage.py**，**MainPage.py**
 
-这三个文件提供了主要的动作方法以及页面元素的定位器
+  这三个文件提供了主要的动作方法以及页面元素的定位器
 
-### ActionObject.py
-该文件使用了LoginPage.py，AddNewItemPage.py，MainPage.py中提供的动作方法并组装成上文**介绍**中说明的具体功能
+  ### ActionObject.py
+  该文件使用了LoginPage.py，AddNewItemPage.py，MainPage.py中提供的动作方法并组装成上文**介绍**中说明的具体功能
 
-### DrblControl.py
-该文件提供了一组测试数据以及一个具体的actionObject调用例子，该例子将访问你的账户并上传两条包含测试数据的条目
+  ### DrblControl.py
+  该文件提供了一组测试数据以及一个具体的actionObject调用例子，该例子将访问你的账户并上传两条包含测试数据的条目
