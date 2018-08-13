@@ -26,4 +26,38 @@ cd至根文件夹下 在命令行中键入
 
 接下来，你应该可以正常的通过DrblControl.py中提供的例子
 
+## 功能说明
+以下将说明定义在**ActionObject.py**中**NewItem**类的注意功能
+
+### login(userName, password)
+接受用户名和密码，登陆网站，暂未实现登陆失败的提示功能
+
+### goToAddNewItemPage()
+不接受参数，将页面跳转至单品的新有好货页面
+
+### updateItems(datas)
+接受一个包含数据的元组，并将其依次上传至网站
+
+### fillData(data)
+接受一个包含单个条目的字典，并将其上传至网站，data的结构请参考下一小节
+
+### saveItem(operation)
+接受一个字符串类型的操作名，并在保存草稿后按规定的操作执行，支持的操作如下(不支持的操作将触发默认动作)
+
+1. **goToList**：返回列表（默认）
+2. **addNewItem**: 新建下一条
+
 ## 项目结构
+### PageObject/BaseObject.py
+该文件二次封装了selenium提供的接口以便于项目使用
+
+### PageObject/其余python文件
+包括 **LoginPage.py**，**AddNewItemPage.py**，**MainPage.py**
+
+这三个文件提供了主要的动作方法以及页面元素的定位器
+
+### ActionObject.py
+该文件使用了LoginPage.py，AddNewItemPage.py，MainPage.py中提供的动作方法并组装成上文**介绍**中说明的具体功能
+
+### DrblControl.py
+该文件提供了一组测试数据以及一个具体的actionObject调用例子，该例子将访问你的账户并上传两条包含测试数据的条目
