@@ -12,7 +12,7 @@
 请将对应版本的chrome驱动放置在你的chrome浏览器根目录下，并修改ActionObject.py中的下列属性
 
 ```3| chromeDriverPath = '你的chrome驱动路径'```
-### 运行测试用例
+### 运行脚本
 cd至根文件夹下 在命令行中键入
 
 ```venv\Scripts\python DrblControl.py```
