@@ -55,7 +55,7 @@ def formatDataByReg(text):
         dataTemp = dataTemps[i]
         data = {
             'category': 9,
-            'targetPeople': (10, 1),
+            'targetPeople': (10, random.randint(1, 5)),
             'url': getUrl(dataTemp),
             'title': f'{getBrand(dataTemp)} {getTitle(dataTemp)}',
             'longHighLight': getLongHighLights(dataTemp),
@@ -70,6 +70,25 @@ def formatDataByReg(text):
             }
         datas.append(data)
     return datas
+
+
+def show(datas):
+    for i in range(0, len(datas)):
+        print(f'[检查] ————————————————条目{i + 1}————————————————')
+        print(f'[检查] 分类索引 > {datas[i]["category"]}')
+        print(f'[检查] 目标人群索引 > {datas[i]["targetPeople"][0]}, {datas[i]["targetPeople"][1]}')
+        print(f'[检查] 商品链接 > {datas[i]["url"]}')
+        print(f'[检查] 标题 > {datas[i]["title"]}')
+        for longHighLight in datas[i]['longHighLight']:
+            print(f'[检查] 长亮点 > {longHighLight}')
+        for shortHighLight in datas[i]['shortHighLight']:
+            print(f'[检查] 短亮点 > {shortHighLight}')
+        for addition in datas[i]['addition']:
+            if 'brand' in addition:
+                print(f'[检查] {addition["title"]}: {addition["brand"]} > {addition["content"]}')
+            else:
+                print(f'[检查] {addition["title"]} > {addition["content"]}')
+        print()
 
 
 def getUrl(data):
