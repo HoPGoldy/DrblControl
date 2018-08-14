@@ -6,20 +6,20 @@
 
 ## 安装与配置
 ### 环境需求
-请确保安装python3.6.2以上的版本和可以正常使用的chrome浏览器
+请确保安装可以正常使用的chrome浏览器
 
-### chrome驱动
-请将对应版本的chrome驱动放置在你的chrome浏览器根目录下，并修改ActionObject.py中的下列属性
+### chrome driver
+请查询后在将对应版本的chrome driver放置在你的chrome浏览器根目录下 [驱动下载地址](http://chromedriver.storage.googleapis.com/index.html?path=2.0/)，并修改setting.py中的下列属性
 
-```3| chromeDriverPath = '你的chrome驱动路径'```
+```3| CHROME_DRIVER_PATH = '你的chrome驱动路径'```
 ### 运行脚本
 cd至根文件夹下 在命令行中键入
 
-```venv\Scripts\python DrblControl.py```
+```venv\Scripts\python update.py```
 
 接下来，你应该可以正常的看到程序执行如下操作：
 
 1. 从剪切板读取数据
 2. 将数据格式化为指定列表
 3. 登陆网站
-4. 开始上传
+4. 上传数据
