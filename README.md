@@ -9,7 +9,7 @@
 请确保安装可以正常使用的chrome浏览器
 
 ### chrome driver
-请查询后在将对应版本的chrome driver放置在你的chrome浏览器根目录下 [驱动下载地址](http://chromedriver.storage.googleapis.com/index.html?path=2.0/)，并修改setting.py中的下列属性
+请查询后在将对应版本的chrome driver放置在你的chrome浏览器根目录下 [驱动下载地址](http://chromedriver.storage.googleapis.com/index.html)，并修改setting.py中的下列属性
 
 ```3| CHROME_DRIVER_PATH = '你的chrome驱动路径'```
 ### 运行脚本
