@@ -1,5 +1,5 @@
 # DrblControl
-使用selenium实现的网站drbl.daorc.com的操作封装
+使用selenium实现的网站drbl.daorc.com的操作封装，本添加了一个剪切板到332类型的数据格式化工具
 
 ## 介绍
 该控制器采用了selenium的PO模型，将drbl.daorc.com的主要操作封装起来方便调用，主要包含以下操作：
