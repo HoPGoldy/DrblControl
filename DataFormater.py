@@ -13,7 +13,9 @@ brandReg = r'(?<=宝贝名：\r\n)[\S]+'
 titleReg = r'(?<=[\s])[\S]+(?=\r\n长亮点)'
 longHighLightsReg = r'(?<=长亮点：\r\n)[\S]+\r\n[\S]+\r\n[\S]+'
 shortHighLightReg = r'(?<=短亮点：\r\n)[\S]+\r\n[\S]+\r\n[\S]+'
-designHighlightReg = r'(?<=设计亮点\r\n)[\S]+'
+designHighlightReg = r'(?<=设计亮点\r\n)[\S]+(?=\r\n)'
+otherAdditionTitleReg = r'(搭配指南|材质解析)'
+otherAdditionContentReg = r'(?<=(搭配指南|材质解析)\r\n)[\S]+'
 
 
 def getClipBoardData():
@@ -64,8 +66,11 @@ def formatDataByReg(text):
                              'title': '设计亮点',
                              'content': getDesignHighlight(dataTemp)},
                          {
+                             'title': getOtherAdditionTitle(dataTemp),
+                             'content': getOtherAdditionContent(dataTemp)},
+                         {
                              'title': '品牌介绍',
-                             'content': '                                                             ',
+                             'content': ' ' * 60,
                              'brand': getBrand(dataTemp)})
             }
         datas.append(data)
@@ -115,3 +120,11 @@ def getShortHighLights(data):
 
 def getDesignHighlight(data):
     return re.search(designHighlightReg, data).group(0)
+
+
+def getOtherAdditionTitle(data):
+    return re.search(otherAdditionTitleReg, data).group(0)
+
+
+def getOtherAdditionContent(data):
+    return re.search(otherAdditionContentReg, data).group(0)

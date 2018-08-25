@@ -8,10 +8,9 @@ def update(datas):
     newItem = NewItem(setting.CHROME_DRIVER_PATH)
 
     # 登陆
-    # userName = input('[系统] 请输入用户名：')
-    # password = input('[系统] 请输入密码：')
-    # newItem.login(userName, password)
-    newItem.login('hophophop', '123456')
+    userName = input('[系统] 请输入用户名：')
+    password = input('[系统] 请输入密码：')
+    newItem.login(userName, password)
 
     # 跳转至新有好货
     newItem.goToAddNewItemPage()
@@ -27,6 +26,7 @@ if __name__ == '__main__':
     print('[系统] 正在整理资源')
     datas = formatDataByReg(text)
     comm = input('[系统] 整理完成 1-检查作业 回车-开始上传：')
+
 
     if comm != '1':
         update(datas)
