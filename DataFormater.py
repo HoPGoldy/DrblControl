@@ -6,6 +6,8 @@ import win32clipboard as w
 import win32con
 import re
 import random
+from ChinassppControl import Chinasspp
+from setting import MIN_ADDITION_NUM, MAX_ADDITION_NUM
 
 dataSplitReg = r'━━━━第[0-9]+个条目━━━━[\s]+'
 urlReg = '[\S]+(?=\r\n)'
@@ -55,11 +57,14 @@ def formatDataByReg(text):
     datas = []
     for i in range(1, len(dataTemps)):
         dataTemp = dataTemps[i]
+        brand = getBrand(dataTemp)
+        brandIntroduce = getBrandIntroduce(brand)
+
         data = {
             'category': 9,
             'targetPeople': (10, random.randint(1, 5)),
             'url': getUrl(dataTemp),
-            'title': f'{getBrand(dataTemp)} {getTitle(dataTemp)}',
+            'title': f'{brand} {getTitle(dataTemp)}',
             'longHighLight': getLongHighLights(dataTemp),
             'shortHighLight': getShortHighLights(dataTemp),
             'addition': ({
@@ -70,8 +75,8 @@ def formatDataByReg(text):
                              'content': getOtherAdditionContent(dataTemp)},
                          {
                              'title': '品牌介绍',
-                             'content': ' ' * 60,
-                             'brand': getBrand(dataTemp)})
+                             'content': brandIntroduce,
+                             'brand': brand})
             }
         datas.append(data)
     return datas
@@ -128,3 +133,28 @@ def getOtherAdditionTitle(data):
 
 def getOtherAdditionContent(data):
     return re.search(otherAdditionContentReg, data).group(0)
+
+def getBrandIntroduce(brandName, min=MIN_ADDITION_NUM, max=MAX_ADDITION_NUM):
+    chinasspp = Chinasspp()
+    returnBrands = chinasspp.searchBrand(brandName)
+
+    if returnBrands is not None or len(returnBrands) != 0:
+        for item in returnBrands:
+            introduce = item['introduce']
+            if len(introduce) > min and len(introduce) < MAX_ADDITION_NUM:
+                return introduce
+            elif len(introduce) >= MAX_ADDITION_NUM:
+                return cutBrandIntroduce(introduce, min, max)
+
+        return ' ' * MIN_ADDITION_NUM
+
+def cutBrandIntroduce(str, min, max):
+    segs = str.split('。')
+    goodIntrodue = ''
+
+    for seg in segs:
+        goodIntrodue += seg
+        if len(goodIntrodue) > min and len(goodIntrodue) < max:
+            return goodIntrodue
+
+    return ' ' * MIN_ADDITION_NUM
