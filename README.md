@@ -8,10 +8,15 @@
 ### 环境需求
 请确保安装python3.6.2以上的版本和可以正常使用的chrome浏览器
 
-### chrome驱动
-请将对应版本的chrome驱动放置在你的chrome浏览器根目录下，并修改ActionObject.py中的下列属性
+### 安装依赖
+cd 至跟目录下，执行以下命令
+```pip install -r requirement.txt```
 
-```3| chromeDriverPath = '你的chrome驱动路径'```
+### chrome驱动
+请将对应版本的chrome驱动放置在你的chrome浏览器根目录下，并修改setting.py中的下列属性
+
+```3| CHROME_DRIVER_PATH = '你的chrome驱动路径'```
+
 ### 运行脚本
 cd至根文件夹下 在命令行中键入
 
