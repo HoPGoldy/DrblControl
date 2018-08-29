@@ -6,7 +6,11 @@
 
 ## 安装与配置
 ### 环境需求
-请确保安装可以正常使用的chrome浏览器
+请确保安装可以正常使用的chrome浏览器以及python3.6以上版本
+
+### 安装依赖
+cd至根目录下执行以下命令
+```pip install -r requirement.txt```
 
 ### chrome driver
 请查询后在将对应版本的chrome driver放置在你的chrome浏览器根目录下 [驱动下载地址](http://chromedriver.storage.googleapis.com/index.html)，并修改setting.py中的下列属性
