@@ -13,7 +13,7 @@ cd 至跟目录下，执行以下命令
 ```pip install -r requirement.txt```
 
 ### chrome驱动
-请将对应版本的chrome驱动放置在你的chrome浏览器根目录下，并修改setting.py中的下列属性
+请查询后在将对应版本的chrome driver放置在你的chrome浏览器根目录下 [驱动下载地址](http://chromedriver.storage.googleapis.com/index.html)，并修改setting.py中的下列属性
 
 ```3| CHROME_DRIVER_PATH = '你的chrome驱动路径'```
 
